@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Simple E-Commerce</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+    background:#df6464;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-menu{
+    display:flex;
+    gap:20px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.nav-menu a:hover{
+    color: #df6464;
+    text-decoration:underline;
+}
+/* ===== SECTION ===== */
+section{
+    padding:5px 30px;
+}
+
+.cart-icon{
+    position:relative;
+    cursor:pointer;
+}
+
+#cartBadge{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:white;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:50%;
+    display:none;
+    min-width:18px;
+    text-align:center;
+    font-weight:bold;
+}
+
+
+/* ===== SECTION ===== */
+section{
+    padding:60px 30px;
+}
+
+/* ===== REVIEW SECTION ===== */
+#review{
+    background:linear-gradient(to right,#ffffff,#f8f9fa);
+}
+
+.review-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.review-title h2{
+    font-size:28px;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.review-title p{
+    font-size:14px;
+    color:#777;
+}
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.review-card{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.review-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(to right,#df6464,#ff9a9a);
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,0.15);
+}
+
+.review-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.review-header img{
+    width:65px;
+    height:65px;
+    border-radius:12px;
+    object-fit:cover;
+    box-shadow:0 5px 10px rgba(0,0,0,0.15);
+}
+
+.review-header h3{
+    margin:0;
+    font-size:16px;
+    color:#333;
+}
+
+.review-header span{
+    font-size:12px;
+    color:#df6464;
+    font-weight:bold;
+}
+
+.review-text{
+    font-size:14px;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.review-footer{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:bold;
+    color:#ff9800;
+}
+
+/* ===== FOOTER CONTACT MINI ===== */
+.footer-contact{
+    background:#df6464;
+    color:white;
+    padding:25px 20px;
+    margin-top:40px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.footer-box h4{
+    margin-bottom:10px;
+    font-size:16px;
+    letter-spacing:1px;
+}
+
+.footer-box p{
+    font-size:14px;
+    margin:5px 0;
+    opacity:0.9;
+}
+
+.footer-box a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.footer-box a:hover{
+    text-decoration:underline;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    opacity:0.8;
+    border-top:1px solid rgba(255,255,255,0.3);
+    padding-top:10px;
+}
+
+#cartNotif{
+    position:fixed;
+    top:30px;
+    right:30px;
+    background:#df6464;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    font-size:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(20px);
+    transition:0.4s ease;
+    z-index:99999;
+}
+#cartNotif.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.cart-icon{
+    position:relative;
+    cursor:pointer;
+}
+
+#cartBadge{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:white;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:50%;
+    display:none;
+    min-width:18px;
+    text-align:center;
+    font-weight:bold;
+}
+
+    /* ===== CART MODAL ===== */
+.cart-modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.cart-box{
+    background:white;
+    width:90%;
+    max-width:420px;
+    border-radius:10px;
+    padding:15px;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:bold;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+    font-size:14px;
+}
+
+.cart-total{
+    margin-top:10px;
+    font-weight:bold;
+    text-align:right;
+}
+
+.cart-btn{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#df6464;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ============================= */
+/* ===== RESPONSIVE SYSTEM ===== */
+/* ============================= */
+
+/* TABLET */
+@media (max-width: 900px){
+    .jumbotron h1{
+        font-size:32px;
+    }
+
+    .jumbotron p{
+        font-size:16px;
+    }
+
+    .products{
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    }
+
+    .nav-menu{
+        gap:15px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px){
+
+    /* Navbar */
+    .navbar{
+        flex-direction:column;
+        gap:10px;
+        padding:15px;
+    }
+
+    .nav-title{
+        font-size:20px;
+    }
+
+    .nav-menu{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .nav-menu a{
+        font-size:14px;
+    }
+
+    /* Jumbotron */
+    .jumbotron{
+        padding:90px 15px;
+    }
+
+    .jumbotron h1{
+        font-size:26px;
+    }
+
+    .jumbotron p{
+        font-size:14px;
+    }
+
+    .jumbotron button{
+        font-size:14px;
+        padding:10px 18px;
+    }
+
+    /* Product */
+    section{
+        padding:40px 15px;
+    }
+
+    .card img{
+        height:130px;
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    .card p{
+        font-size:13px;
+    }
+
+    /* Modal */
+    .modal-content{
+        width:92%;
+        padding:15px;
+    }
+
+    .modal-content img{
+        height:180px;
+    }
+
+    /* Cart modal */
+    .cart-box{
+        width:92%;
+    }
+
+    .cart-item{
+        font-size:13px;
+    }
+
+    .cart-btn{
+        font-size:14px;
+        padding:10px;
+    }
+
+    /* Footer */
+    .footer-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .footer-box{
+        margin-bottom:10px;
+    }
+
+    .footer-bottom{
+        font-size:12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <div class="nav-title">🛍️ warung Juooos</div>
+    <div class="nav-menu">
+        <a href="basic html.html">Home</a>
+        <a href="group.html">Group</a>
+        <a href="product.html">Product</a>
+        <a href="review.html">Review</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="cart-icon" onclick="openCart()">
+        🛒
+        <span id="cartBadge">0</span>
+    </div>
+</div>
+
+</div>
+
+<!-- ===== REVIEW SECTION ===== -->
+<section id="review">
+    <div class="review-title">
+        <h2>⭐ Review Produk</h2>
+        <p>Testimoni pelanggan tentang produk favorit kami</p>
+    </div>
+
+    <div class="review-grid">
+
+        <!-- Review 1 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review pisang aroma 1.jpg" alt="Pisang Aroma">
+                <div>
+                    <h3>Pisang Aroma</h3>
+                    <span>🍌 Snack Favorit</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Pisang aromanya crispy di luar, lembut di dalam 🤍  
+                Rasa manisnya pas, tidak bikin enek. Cocok banget buat cemilan sore.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review keju aroma1.jpg" alt="Keju Aroma">
+                <div>
+                    <h3>Keju Aroma</h3>
+                    <span>🧀 Best Seller</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Kejunya lumer, aromanya wangi, gurihnya dapet banget 🤤  
+                Cocok buat pecinta keju, nagih!
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review es blewah1.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Es Ble wah</h3>
+                    <span>🥤 Seger Banget</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Seger, manisnya pas, cocok buat cuaca panas 🔥  
+                Blewahnya asli, sirupnya enak, esnya fresh!
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review es blewah2.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Es Blewah</h3>
+                    <span>🥤 GOOD</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Seger, manisnya pas, cocok buat cuaca panas 🔥  
+                Blewahnya asli, sirupnya enak, esnya fresh!
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review keju aroma2.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Keju Arowma</h3>
+                    <span>🧀 ngeju banget</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Rasanya premium, cocok buat camilan sore.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="review pisang aroma2.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Pisang Arowma</h3>
+                    <span>🍌camilan terenak</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Cocok buat camilan santai atau teman minum teh.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="es blewah3.jpg" alt="Es Blewah">
+                <div>
+                    <h3>es ble wah</h3>
+                    <span>Seger Banget</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Es blewahnya dingin, menyegarkan, dan tidak terlalu manis. Bikin haus langsung hilang.!
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="pisang aroma3.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Pisang Arowma</h3>
+                    <span>🍌gurih</span>
+                </div>
+            </div>
+            <p class="review-text">
+              Tidak terlalu manis, rasanya seimbang.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="keju aroma3.jpeg" alt="Es Blewah">
+                <div>
+                    <h3>keju Arowma</h3>
+                    <span>Enak</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Gurihnya dapet, manisnya pas, cocok untuk semua umur.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="eju aroma4.jpg" alt="Es Blewah">
+                <div>
+                    <h3>keju Arowma</h3>
+                    <span>🍌toppp</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Teksturnya crispy di luar, lembut di dalam. Enak dimakan hangat.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="pisang aroma4.jpg" alt="Es Blewah">
+                <div>
+                    <h3>Pisang Arowma</h3>
+                    <span>🍌renyah</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Perpaduan pisang dan kulit crispy-nya pas banget.
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+
+         <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <img src="es blewah4.jpg" alt="Es Blewah">
+                <div>
+                    <h3>es blewah</h3>
+                    <span>Seger Banget</span>
+                </div>
+            </div>
+            <p class="review-text">
+                Tekstur blewahnya lembut, kuahnya segar, dan es batunya pas. Rasanya ringan tapi nikmat
+            </p>
+            <div class="review-footer">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER CONTACT MINI ===== -->
+<div class="footer-contact">
+    <div class="footer-container">
+
+        <div class="footer-box">
+            <h4>🍹 Warung Juos</h4>
+            <p>Jajanan segar & kekinian</p>
+            <p>Es Blewah • Keju Arowma • Pisang arowma</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>📍 Alamat</h4>
+            <p>Jl. Raya djati kayangan No. 10</p>
+            <p>Indonesia</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>📞 Kontak</h4>
+            <p>
+                <a href="https://wa.me/6282331758670" target="_blank">
+                    💬 WhatsApp: 082331758670
+                </a>
+            </p>
+            <p>🕒 10.00 - 18.00</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Warung Juooos | MyShop - All Rights Reserved
+    </div>
+</div>
+<!-- ===== CART MODAL ===== -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-box">
+      <div class="cart-header">
+         <span>🛒 Keranjang</span>
+         <span style="cursor:pointer" onclick="closeCart()">✖</span>
+      </div>
+
+     <div id="cartItems"></div>
+
+      <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+
+      <button class="cart-btn" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+<script>
+
+/* ============================= */
+/* ===== CART SYSTEM CLEAN ===== */
+/* ============================= */
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let currentProduct = null;
+
+/* ===== CART MODAL ===== */
+function openCart(){
+    document.getElementById("cartModal").style.display = "flex";
+    renderCart();
+}
+
+function closeCart(){
+    document.getElementById("cartModal").style.display = "none";
+}
+
+/* ===== BADGE ===== */
+function updateCartBadge(){
+    let badge = document.getElementById("cartBadge");
+    let totalQty = 0;
+
+    cart.forEach(item => {
+        totalQty += item.qty;
+    });
+
+    if(totalQty > 0){
+        badge.style.display = "block";
+        badge.innerText = totalQty;
+    }else{
+        badge.style.display = "none";
+    }
+}
+
+/* ===== RENDER CART ===== */
+function renderCart(){
+    let box = document.getElementById("cartItems");
+    let totalEl = document.getElementById("cartTotal");
+    box.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item,i)=>{
+        let sub = item.price * item.qty;
+        total += sub;
+
+        let div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+            <span>${item.name} (${item.qty}x)</span>
+            <span>
+                Rp ${sub} 
+                <span style="cursor:pointer;color:red" onclick="removeItem(${i})">✖</span>
+            </span>
+        `;
+        box.appendChild(div);
+    });
+
+    totalEl.innerText = "Total: Rp " + total;
+}
+
+/* ===== REMOVE ITEM ===== */
+function removeItem(index){
+    cart.splice(index,1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCartBadge();
+}
+
+/* ===== ADD TO CART ===== */
+function addToCart(name, price, variant="Original"){
+    let key = name + "-" + variant;
+    let item = cart.find(p => p.key === key);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({ key, name, variant, price, qty:1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCartNotif("Masuk keranjang 🛒");
+    updateCartBadge();
+}
+
+/* ===== NOTIFICATION ===== */
+function showCartNotif(text="Produk masuk ke keranjang 🛒"){
+    let notif = document.getElementById("cartNotif");
+    notif.innerText = text;
+    notif.classList.add("show");
+
+    setTimeout(()=>{
+        notif.classList.remove("show");
+    },1500);
+}
+
+/* ===== CHECKOUT (WA) ===== */
+function checkout(){
+    if(cart.length === 0){
+        alert("Keranjang kosong!");
+        return;
+    }
+
+    let nama = prompt("Nama pembeli:");
+    if(!nama) return;
+
+    let alamat = prompt("Alamat lengkap:");
+    if(!alamat) return;
+
+    let nohp = prompt("Nomor WhatsApp:");
+    if(!nohp) return;
+
+    let orderID = "ORD-" + Date.now();
+    let invoice = "INV-" + Math.floor(Math.random()*1000000);
+    let waktu = new Date().toLocaleString("id-ID");
+
+    let pesan = `🛒 *ORDER BARU*
+━━━━━━━━━━━━━━━━━━
+🧾 Invoice : ${invoice}
+🆔 Order ID : ${orderID}
+🕒 Waktu : ${waktu}
+
+👤 Nama: ${nama}
+📍 Alamat: ${alamat}
+📞 No HP: ${nohp}
+
+📦 *Detail Pesanan:*
+`;
+
+    let total = 0;
+    cart.forEach((item,i)=>{
+        let sub = item.price * item.qty;
+        total += sub;
+        pesan += `${i+1}. ${item.name}
+   Qty: ${item.qty}
+   Harga: Rp ${item.price}
+   Subtotal: Rp ${sub}\n\n`;
+    });
+
+    pesan += `━━━━━━━━━━━━━━━━━━
+💰 *TOTAL: Rp ${total}*
+
+📌 Status: *MENUNGGU KONFIRMASI*
+🙏 Mohon diproses ya kak 🙏`;
+
+    let noWA = "6282331758670";  // nomor WA warung
+    let url = "https://wa.me/" + noWA + "?text=" + encodeURIComponent(pesan);
+    window.open(url,"_blank");
+
+    cart = [];
+    localStorage.removeItem("cart");
+    closeCart();
+    updateCartBadge();
+}
+
+/* ===== INIT ===== */
+window.onload = function(){
+    updateCartBadge();
+};
+
+
+</script>
+    
+</body>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>E-Commerce</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+    background:#df6464;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-menu{
+    display:flex;
+    gap:20px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.nav-menu a:hover{
+    color:#df6464;
+    text-decoration:underline;
+}
+
+/* ===== SECTION ===== */
+section{
+    padding:5px 30px;
+}
+
+
+/* ===== PRODUCTS ===== */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+.card{
+    background:#faf8f8;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+    cursor:pointer;
+}
+
+.card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.card h3{
+    margin:10px 0 5px;
+}
+
+.card p{
+    margin:5px 0;
+}
+
+/* tombol */
+.card-actions{
+    display:flex;
+    width:100%;
+    margin-top:8px;
+}
+
+.card-actions button{
+    flex:1;
+    border:none;
+    padding:10px 0;
+    cursor:pointer;
+    color:#fff;
+    font-size:14px;
+}
+
+.btn-beli{
+    background:#df6464;
+    border-radius:5px 0 0 5px;
+}
+
+.btn-cart{
+    background:#b84343;
+    border-radius:0 5px 5px 0;
+}
+
+/* ===== CART MODAL ===== */
+.cart-modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.cart-box{
+    background:white;
+    width:90%;
+    max-width:420px;
+    border-radius:10px;
+    padding:15px;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:bold;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+    font-size:14px;
+}
+
+.cart-total{
+    margin-top:10px;
+    font-weight:bold;
+    text-align:right;
+}
+
+.cart-btn{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#df6464;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.variant-select{
+    width:100%;
+    margin-top:6px;
+    padding:7px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    font-size:13px;
+    cursor:pointer;
+}
+
+
+/* ===== MODAL DETAIL PRODUCT ===== */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:white;
+    width:90%;
+    max-width:450px;
+    border-radius:10px;
+    padding:20px;
+    position:relative;
+    animation:zoom 0.3s ease;
+}
+
+@keyframes zoom{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.modal-content img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.modal-content h3{
+    margin:10px 0 5px;
+}
+
+.modal-content p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+.modal-close{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+/* ===== JUMBOTRON ===== */
+.jumbotron{
+    position: relative;
+    overflow: hidden;
+    background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+               url("https://images.unsplash.com/featured/?shopping,store");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:120px 30px;
+}
+
+.jumbotron h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.jumbotron p{
+    font-size:18px;
+    max-width:700px;
+    margin:0 auto 25px;
+}
+
+.jumbotron button{
+    background:#df6464;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* video */
+.jumbotron video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    min-width:100%;
+    min-height:100%;
+    transform:translate(-50%, -50%);
+    z-index:0;
+    object-fit:cover;
+}
+
+.jumbotron .overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    z-index:1;
+}
+
+.jumbotron .content{
+    position:relative;
+    z-index:2;
+}
+
+/* ===== BEST SELLER ===== */
+.best-seller{
+    margin: 1px 0;   /* sebelumnya biasanya besar */
+    padding: 5px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.product-section{
+    margin-top: 10px;   /* jarak dari Best Seller */
+    padding-top: 5px;
+}
+
+
+.best-seller h2{
+    font-size:36px;
+    font-weight:bold;
+    color:#df6464;
+    letter-spacing:2px;
+}
+
+
+/* ===== FOOTER CONTACT MINI ===== */
+.footer-contact{
+    background:#df6464;
+    color:white;
+    padding:25px 20px;
+    margin-top:40px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.footer-box h4{
+    margin-bottom:10px;
+    font-size:16px;
+    letter-spacing:1px;
+}
+
+.footer-box p{
+    font-size:14px;
+    margin:5px 0;
+    opacity:0.9;
+}
+
+.footer-box a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.footer-box a:hover{
+    text-decoration:underline;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    opacity:0.8;
+    border-top:1px solid rgba(255,255,255,0.3);
+    padding-top:10px;
+}
+
+#cartNotif{
+    position:fixed;
+    top:30px;
+    right:30px;
+    background:#df6464;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    font-size:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(20px);
+    transition:0.4s ease;
+    z-index:99999;
+}
+#cartNotif.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.cart-icon{
+    position:relative;
+    cursor:pointer;
+}
+
+#cartBadge{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:white;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:50%;
+    display:none;
+    min-width:18px;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* ============================= */
+/* ===== RESPONSIVE SYSTEM ===== */
+/* ============================= */
+
+/* TABLET */
+@media (max-width: 900px){
+    .jumbotron h1{
+        font-size:32px;
+    }
+
+    .jumbotron p{
+        font-size:16px;
+    }
+
+    .products{
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    }
+
+    .nav-menu{
+        gap:15px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px){
+
+    /* Navbar */
+    .navbar{
+        flex-direction:column;
+        gap:10px;
+        padding:15px;
+    }
+
+    .nav-title{
+        font-size:20px;
+    }
+
+    .nav-menu{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .nav-menu a{
+        font-size:14px;
+    }
+
+    /* Jumbotron */
+    .jumbotron{
+        padding:90px 15px;
+    }
+
+    .jumbotron h1{
+        font-size:26px;
+    }
+
+    .jumbotron p{
+        font-size:14px;
+    }
+
+    .jumbotron button{
+        font-size:14px;
+        padding:10px 18px;
+    }
+
+   /* Product */
+    section{
+        padding:40px 15px;
+    }
+
+    .card img{
+        height:130px;
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    .card p{
+        font-size:13px;
+    }
+
+    /* Modal */
+    .modal-content{
+        width:92%;
+        padding:15px;
+    }
+
+    .modal-content img{
+        height:180px;
+    }
+
+    /* Cart modal */
+    .cart-box{
+        width:92%;
+    }
+
+    .cart-item{
+        font-size:13px;
+    }
+
+    .cart-btn{
+        font-size:14px;
+        padding:10px;
+    }
+
+    /* Footer */
+    .footer-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .footer-box{
+        margin-bottom:10px;
+    }
+
+    .footer-bottom{
+        font-size:12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <div class="nav-title">🛍️ warung Juooos</div>
+
+    <div class="nav-menu">
+        <a href="basic html.html">Home</a>
+        <a href="group.html">Group</a>
+        <a href="product.html">Product</a>
+        <a href="review.html">Review</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="cart-icon" onclick="openCart()">
+        🛒
+        <span id="cartBadge">0</span>
+    </div>
+</div>
+
+
+<!-- ===== JUMBOTRON ===== -->
+<div class="jumbotron">
+    <video autoplay muted loop>
+        <source src="video product.mp4" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+        <h1>Selamat Datang di warung Juooos</h1>
+        <p>Tempat warung online terbaik, murah, dan terpercaya. 
+           Temukan produk favoritmu sekarang juga!</p>
+        <button onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">
+            Belanja Sekarang
+        </button>
+    </div>
+</div>
+
+<!-- ===== BEST SELLER ===== -->
+<div class="best-seller">
+    <h2>🔥 Best Seller 🔥</h2>
+</div>
+
+<!-- ===== PRODUCT ===== -->
+<section id="product">
+    <h2>Product</h2>
+
+   <div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="card" onclick="openProduct(
+    'es blewah',
+    7000,
+    'es blewah.jpeg',
+    'Es blewah segar dengan rasa manis alami, cocok untuk cuaca panas.',
+    '⭐ 4.8 | 120 review'
+)">
+    <img src="es blewah.jpeg">
+    <h3>es Ble Wah</h3>
+    <p>Rp 7000</p>
+
+    <select class="variant-select" onclick="event.stopPropagation()">
+        <option value="" readonly>Pilih Varian</option>
+    </select>
+
+    <div class="card-actions" onclick="event.stopPropagation()">
+        <button class="btn-cart" style="border-radius:5px;" 
+        onclick="addToCart(
+            'es blewah',
+            7000,
+            this.closest('.card').querySelector('.variant-select').value || 'Original'
+        )">
+            🛒 Tambah Keranjang
+        </button>
+    </div>
+</div> <!-- ✅ TUTUP CARD 1 -->
+
+<!-- PRODUCT 2 -->
+<div class="card" onclick="openProduct(
+    'keju arowma',
+    10000,
+    'keju aroma.jpeg',
+    'Keju aroma crispy dengan isian keju lumer.',
+    '⭐ 4.7 | 98 review'
+)">
+    <img src="keju aroma.jpeg">
+    <h3>Keju Arowma</h3>
+    <p>Rp 10000</p>
+
+    <select class="variant-select" onclick="event.stopPropagation()">
+        <option value="">Pilih Varian</option>
+        <option value="Oreo">oreo</option>
+        <option value="Coklat">Coklat</option>
+        <option value="Strawberry">strawberry</option>
+    </select>
+
+    <div class="card-actions" onclick="event.stopPropagation()">
+        <button class="btn-cart" style="border-radius:5px;" 
+        onclick="addToCart(
+            'keju arowma',
+            10000,
+            this.closest('.card').querySelector('.variant-select').value || 'Original'
+        )">
+            🛒 Tambah Keranjang
+        </button>
+    </div>
+</div> <!-- ✅ TUTUP CARD 2 -->
+
+<!-- PRODUCT 3 -->
+<div class="card" onclick="openProduct(
+    'pisang TOPing',
+    10000,
+    'pisang topimg.jpeg',
+    'Pisang goreng topping coklat dan keju.',
+    '⭐ 4.9 | 150 review'
+)">
+    <img src="pisang topimg.jpeg">
+    <h3>Pisang Arowma</h3>
+    <p>Rp 10000</p>
+
+    <select class="variant-select" onclick="event.stopPropagation()">
+        <option value="">Pilih Varian</option>
+        <option value="Oreo">oreo</option>
+        <option value="Coklat">Coklat</option>
+        <option value="Strawberry">strawberry</option>
+    </select>
+
+    <div class="card-actions" onclick="event.stopPropagation()">
+        <button class="btn-cart" style="border-radius:5px;" 
+        onclick="addToCart(
+            'Pisang Arowma',
+            10000,
+            this.closest('.card').querySelector('.variant-select').value || 'Original'
+        )">
+            🛒 Tambah Keranjang
+        </button>
+    </div>
+</div> <!-- ✅ TUTUP CARD 3 -->
+
+</div>
+</section>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name, price){
+    let item = cart.find(p => p.name === name);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({name, price, qty:1});
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge();
+}
+
+function updateCartBadge(){
+    let badge = document.getElementById("cartBadge");
+    let total = 0;
+
+    cart.forEach(i => total += i.qty);
+
+    if(total > 0){
+        badge.style.display = "block";
+        badge.innerText = total;
+    }else{
+        badge.style.display = "none";
+    }
+}
+
+function openCart(){
+    let cartList = document.getElementById("cartList");
+    let totalEl = document.getElementById("cartTotal");
+    cartList.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item=>{
+        let li = document.createElement("li");
+        li.innerHTML = `${item.name} (${item.qty}) - Rp ${item.price*item.qty}`;
+        cartList.appendChild(li);
+        total += item.price * item.qty;
+    });
+
+    totalEl.innerText = total;
+    document.getElementById("cartModal").style.display="flex";
+}
+
+function checkout(){
+    alert("Pesanan berhasil di-checkout!");
+    cart = [];
+    localStorage.removeItem("cart");
+    updateCartBadge();
+    closeCart();
+}
+
+function closeCart(){
+    document.getElementById("cartModal").style.display="none";
+}
+
+updateCartBadge();
+
+function addToCart(name, price, variant="Original"){
+    let key = name + "-" + variant;
+    let item = cart.find(p => p.key === key);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({key, name, variant, price, qty:1});
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCartNotif("Masuk keranjang 🛒");
+    updateCartBadge();
+}
+
+
+/* ===== RENDER CART ===== */
+function renderCart(){
+    let cartItems = document.getElementById("cartItems");
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+        total += item.price * item.qty;
+        cartItems.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name} (x${item.qty})</span>
+                <span>Rp ${item.price * item.qty}</span>
+            </div>
+        `;
+    });
+
+    document.getElementById("cartTotal").innerText = "Total: Rp " + total;
+}
+
+/* ===== CHECKOUT ===== */
+function checkout(){
+    if(cart.length === 0){
+        alert("Keranjang kosong!");
+        return;
+    }
+
+    alert("Checkout berhasil!\nTotal: " + 
+        document.getElementById("cartTotal").innerText
+    );
+
+    cart = [];
+    localStorage.removeItem("cart");
+    closeCart();
+}
+
+/* ===== MODAL PRODUCT ===== */
+let currentProduct = {};
+
+function openProduct(name, price, img, desc, review){
+    currentProduct = {name, price};
+    document.getElementById("modalImg").src = img;
+    document.getElementById("modalTitle").innerText = name;
+    document.getElementById("modalPrice").innerText = "Rp " + price;
+    document.getElementById("modalDesc").innerText = desc;
+    document.getElementById("modalReview").innerText = review;
+    document.getElementById("productModal").style.display = "flex";
+}
+
+function closeProduct(){
+    document.getElementById("productModal").style.display = "none";
+}
+
+function modalCart(){
+    addToCart(currentProduct.name, currentProduct.price);
+}
+
+/* ===== CART SYSTEM ===== */
+
+function openCart(){
+    document.getElementById("cartModal").style.display="flex";
+    renderCart();
+}
+
+function closeCart(){
+    document.getElementById("cartModal").style.display="none";
+}
+
+function removeItem(index){
+    cart.splice(index,1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCartBadge();
+
+}
+window.onload = function(){
+    updateCartBadge();
+}
+
+function renderCart(){
+    let box = document.getElementById("cartItems");
+    let totalEl = document.getElementById("cartTotal");
+    box.innerHTML="";
+    let total=0;
+
+    cart.forEach((item,i)=>{
+        let sub = item.price * item.qty;
+        total += sub;
+
+        let div = document.createElement("div");
+        div.className="cart-item";
+        div.innerHTML=`
+            <span>${item.name} (${item.qty}x)</span>
+            <span>Rp ${sub} <span style="cursor:pointer;color:red" onclick="removeItem(${i})">✖</span></span>
+        `;
+        box.appendChild(div);
+    });
+
+    totalEl.innerText = "Total: Rp " + total;
+}
+
+/* ===== PRODUCT MODAL ===== */
+function openProduct(name, price, img, desc, review){
+    currentProduct = {name,price};
+    document.getElementById("modalImg").src = img;
+    document.getElementById("modalTitle").innerText = name;
+    document.getElementById("modalPrice").innerText = "Rp " + price;
+    document.getElementById("modalDesc").innerText = desc;
+    document.getElementById("modalReview").innerText = review;
+    document.getElementById("productModal").style.display="flex";
+}
+
+function closeProduct(){
+    document.getElementById("productModal").style.display="none";
+}
+
+
+function modalBuy(){
+    addToCart(currentProduct.name,currentProduct.price);
+    closeProduct();
+    openCart();
+}
+
+function modalCart(){
+    addToCart(currentProduct.name,currentProduct.price);
+}
+
+/* ===== CHECKOUT ===== */
+function checkout(){
+    if(cart.length===0){
+        alert("Keranjang kosong!");
+        return;
+    }
+
+    let nama = prompt("Nama pembeli:");
+    if(!nama) return;
+    let alamat = prompt("Alamat lengkap:");
+    if(!alamat) return;
+    let nohp = prompt("Nomor WhatsApp:");
+    if(!nohp) return;
+
+    let orderID = "ORD-"+Date.now();
+    let invoice = "INV-"+Math.floor(Math.random()*1000000);
+    let waktu = new Date().toLocaleString("id-ID");
+
+    let pesan = `🛒 *ORDER BARU*
+━━━━━━━━━━━━━━━━━━
+🧾 Invoice : ${invoice}
+🆔 Order ID : ${orderID}
+🕒 Waktu : ${waktu}
+
+👤 Nama: ${nama}
+📍 Alamat: ${alamat}
+📞 No HP: ${nohp}
+
+📦 *Detail Pesanan:*
+`;
+
+    let total=0;
+    cart.forEach((item,i)=>{
+        let sub=item.price*item.qty;
+        total+=sub;
+        pesan+=`${i+1}. ${item.name}
+   Qty: ${item.qty}
+   Harga: Rp ${item.price}
+   Subtotal: Rp ${sub}\n\n`;
+    });
+
+    pesan+=`━━━━━━━━━━━━━━━━━━
+💰 *TOTAL: Rp ${total}*
+
+📌 Status: *MENUNGGU KONFIRMASI*
+🙏 Mohon diproses ya kak 🙏`;
+
+    let noWA="6282331758670"; 
+    let url="https://wa.me/"+noWA+"?text="+encodeURIComponent(pesan);
+    window.open(url,"_blank");
+
+    cart=[];
+    localStorage.removeItem("cart");
+    closeCart();
+}
+
+function addToCart(name, price, variant="Original"){
+    let key = name+"-"+variant;
+    let item = cart.find(p => p.key === key);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({key,name,variant,price,qty:1});
+    }
+localStorage.setItem("cart", JSON.stringify(cart));
+showCartNotif("Masuk keranjang 🛒");
+updateCartBadge();
+
+}
+function showCartNotif(text="Produk masuk ke keranjang 🛒"){
+    let notif = document.getElementById("cartNotif");
+    notif.innerText = text;
+    notif.classList.add("show");
+
+    setTimeout(()=>{
+        notif.classList.remove("show");
+    },1500);
+}
+function updateCartBadge(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let badge = document.getElementById("cartBadge");
+
+    if(cart.length > 0){
+        badge.style.display = "block";
+        badge.innerText = cart.length;
+    }else{
+        badge.style.display = "none";
+    }
+}
+
+
+renderCart();
+
+</script>
+
+
+<!-- ===== CART MODAL ===== -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-box">
+      <div class="cart-header">
+         <span>🛒 Keranjang</span>
+         <span style="cursor:pointer" onclick="closeCart()">✖</span>
+      </div>
+
+     <div id="cartItems"></div>
+      <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+       <button class="cart-btn" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<!-- ===== MODAL PRODUCT ===== -->
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <div class="modal-close" onclick="closeProduct()">✖</div>
+        <img id="modalImg">
+        <h3 id="modalTitle"></h3>
+        <p id="modalPrice"></p>
+        <p id="modalDesc"></p>
+        <p id="modalReview"></p>
+
+        <div class="card-actions">
+    <button class="btn-cart" style="border-radius:5px; width:100%;" 
+        onclick="modalCart()">
+        🛒 Tambah Keranjang
+    </button>
+</div>
+
+    </div>
+</div>
+
+<!-- ===== FOOTER CONTACT MINI ===== -->
+<div class="footer-contact">
+    <div class="footer-container">
+
+        <div class="footer-box">
+            <h4>🍹 Warung Juos</h4>
+            <p>Jajanan segar & kekinian</p>
+            <p>Es Blewah • Keju Arowma • Pisang arowma</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>📍 Alamat</h4>
+            <p>Jl. Raya djati kayangan No. 10</p>
+            <p>Indonesia</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>📞 Kontak</h4>
+            <p>
+                <a href="https://wa.me/6282331758670" target="_blank">
+                    💬 WhatsApp: 082331758670
+                </a>
+            </p>
+            <p>🕒 10.00 - 18.00</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Warung Juooos | MyShop - All Rights Reserved
+    </div>
+</div>
+
+</body>
