@@ -308,6 +308,156 @@ section{
     .nav-menu{
         gap:15px;
     }
+
+    /* ============================= */
+/* ===== RESPONSIVE IDEAL ===== */
+/* ============================= */
+
+/* ===== DESKTOP LARGE ===== */
+@media (min-width: 1200px){
+    section{
+        padding:40px 80px;
+    }
+
+    .products{
+        grid-template-columns:repeat(4,1fr);
+        gap:30px;
+    }
+
+    .card img{
+        height:180px;
+    }
+}
+
+/* ===== LAPTOP ===== */
+@media (max-width: 1199px){
+    section{
+        padding:35px 50px;
+    }
+
+    .products{
+        grid-template-columns:repeat(3,1fr);
+        gap:25px;
+    }
+
+    .card img{
+        height:170px;
+    }
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 900px){
+    .navbar{
+        padding:15px 25px;
+    }
+
+    section{
+        padding:25px 25px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:20px;
+    }
+
+    .card img{
+        height:160px;
+    }
+
+    .nav-menu a{
+        font-size:14px;
+    }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px){
+
+    /* Navbar */
+    .navbar{
+        flex-direction:column;
+        gap:10px;
+        padding:12px;
+    }
+
+    .nav-title{
+        font-size:18px;
+    }
+
+    .nav-menu{
+        display:none;   /* standar mobile website */
+    }
+
+    /* Section */
+    section{
+        padding:16px 12px;
+    }
+
+    /* Best seller title */
+    h2{
+        font-size:18px;
+        text-align:center;
+    }
+
+    /* Products */
+    .products{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+
+    /* Card */
+    .card{
+        padding:12px;
+        border-radius:12px;
+    }
+
+    .card img{
+        height:180px;
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    .card p{
+        font-size:13px;
+    }
+
+    .variant-select{
+        font-size:13px;
+        padding:8px;
+    }
+
+    .card-actions button{
+        font-size:13px;
+        padding:10px 0;
+    }
+
+    /* Modal */
+    .modal-content{
+        width:95%;
+        padding:15px;
+    }
+
+    .modal-content img{
+        height:180px;
+    }
+
+    /* Cart */
+    .cart-box{
+        width:95%;
+    }
+
+    /* Footer */
+    .footer-container{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:15px;
+    }
+
+    .footer-bottom{
+        font-size:11px;
+    }
+
 }
 
 
