@@ -332,98 +332,135 @@ section{
     }
 }
 
-/* MOBILE */
+/* ============================= */
+/* ===== MOBILE IDEAL MODE ===== */
+/* ============================= */
 @media (max-width: 600px){
 
-    /* Navbar */
+    body{
+        background:#f4f4f4;
+    }
+
+    /* Navbar clean */
     .navbar{
-        flex-direction:column;
-        gap:8px;
-        padding:12px;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        padding:12px 14px;
     }
 
     .nav-title{
-        font-size:18px;
+        font-size:16px;
+        font-weight:700;
     }
 
     .nav-menu{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px;
+        display:none; /* biar clean seperti contoh */
     }
 
-    .nav-menu a{
-        font-size:13px;
+    .cart-icon{
+        font-size:18px;
     }
 
     /* Section */
     section{
-        padding:15px 12px;
+        padding:16px 12px;
     }
 
-    /* Products grid */
+    section h2{
+        text-align:center;
+        font-size:18px;
+        margin-bottom:14px;
+        font-weight:700;
+    }
+
+    /* Products */
     .products{
-        grid-template-columns: 1fr 1fr;   /* 2 kolom di HP */
+        grid-template-columns: 1fr 1fr;
         gap:12px;
     }
 
-    /* Card */
     .card{
+        border-radius:14px;
         padding:10px;
+        box-shadow:0 6px 16px rgba(0,0,0,0.06);
     }
 
     .card img{
         height:120px;
+        border-radius:10px;
     }
 
     .card h3{
-        font-size:14px;
-        margin:6px 0 3px;
+        font-size:13px;
+        margin:6px 0 2px;
+        font-weight:600;
     }
 
     .card p{
         font-size:12px;
-        margin:3px 0;
+        margin:2px 0;
     }
 
     .variant-select{
-        font-size:12px;
+        font-size:11px;
         padding:6px;
+        border-radius:8px;
+    }
+
+    .card-actions{
+        margin-top:6px;
     }
 
     .card-actions button{
         font-size:12px;
         padding:8px 0;
+        border-radius:8px;
     }
 
     /* Modal */
     .modal-content{
-        width:92%;
-        padding:15px;
+        width:94%;
+        border-radius:16px;
+        padding:14px;
     }
 
     .modal-content img{
         height:170px;
+        border-radius:12px;
     }
 
     /* Cart */
     .cart-box{
-        width:92%;
+        width:94%;
+        border-radius:16px;
     }
 
     /* Footer */
+    .footer-contact{
+        padding:20px 12px;
+    }
+
     .footer-container{
         grid-template-columns:1fr;
+        gap:14px;
         text-align:center;
-        gap:15px;
+    }
+
+    .footer-box h4{
+        font-size:14px;
+    }
+
+    .footer-box p,
+    .footer-box a{
+        font-size:12px;
     }
 
     .footer-bottom{
         font-size:11px;
+        padding-top:8px;
     }
-
 }
-
 </style>
 </head>
 
