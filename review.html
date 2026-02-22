@@ -424,40 +424,48 @@ p{
     font-size:13px;
 }
 
-/* contact (TIDAK ubah layout, hanya normalisasi) */
-.contact-container{
-    gap:15px;
+ .footer-contact{
+        padding:20px 14px;
+    }
+
+    .footer-container{
+        grid-template-columns:1fr;   /* tetap 1 kolom */
+        gap:16px;
+        text-align:left;             /* tetap rapi natural */
+    }
+
+    .footer-box{
+        padding:6px 0;
+    }
+
+    .footer-box h4{
+        font-size:15px;
+        margin-bottom:6px;
+        letter-spacing:0.5px;
+    }
+
+    .footer-box p,
+    .footer-box a{
+        font-size:13px;
+        line-height:1.7;
+        opacity:0.95;
+    }
+
+    .footer-box a{
+        display:inline-block;
+        margin-top:4px;
+    }
+
+    .footer-bottom{
+        font-size:11px;
+        text-align:center;
+        margin-top:14px;
+        padding-top:10px;
+        line-height:1.5;
+    }
 }
 
-.contact-card{
-    padding:15px;
-}
 
-.map-box iframe{
-    height:200px;
-}
-
-/* footer */
-.footer-container{
-    gap:12px;
-    padding:12px;
-}
-
-.footer-box h4{
-    font-size:14px;
-}
-
-.footer-box p,
-.footer-box a{
-    font-size:12px;
-}
-
-.footer-bottom{
-    font-size:11px;
-    padding-top:8px;
-}
-
-}
 
 
 
