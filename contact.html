@@ -349,93 +349,152 @@ section{
     }
 }
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE IDEAL PROFESSIONAL ===== */
 @media (max-width: 600px){
 
-    /* Navbar */
+    /* ===== NAVBAR ===== */
     .navbar{
-        flex-direction:column;
-        gap:10px;
-        padding:12px;
+        flex-direction:row;
+        padding:10px 14px;
     }
 
     .nav-title{
-        font-size:18px;
+        font-size:16px;
     }
 
     .nav-menu{
-        display:none;   /* standar mobile website */
+        display:none; /* standar mobile */
     }
 
-    /* Section */
+    .cart-icon{
+        font-size:18px;
+    }
+
+    /* ===== HERO / SECTION ===== */
     section{
-        padding:16px 12px;
+        padding:14px 12px;
     }
 
-    /* Best seller title */
+    h1{
+        font-size:20px;
+        line-height:1.3;
+    }
+
     h2{
         font-size:18px;
         text-align:center;
+        margin-bottom:10px;
     }
 
-    /* Products */
+    p{
+        font-size:13px;
+        line-height:1.5;
+    }
+
+    /* ===== PRODUCTS GRID ===== */
     .products{
-        grid-template-columns:1fr;
-        gap:14px;
+        display:grid;
+        grid-template-columns:repeat(2,1fr); /* 2 kolom standar mobile */
+        gap:12px;
     }
 
-    /* Card */
+    /* ===== CARD ===== */
     .card{
+        padding:10px;
+        border-radius:10px;
+    }
+
+    .card img{
+        height:130px;
+        object-fit:cover;
+        border-radius:8px;
+    }
+
+    .card h3{
+        font-size:14px;
+        margin:6px 0 4px;
+    }
+
+    .card p{
+        font-size:12px;
+        margin:4px 0;
+    }
+
+    .variant-select{
+        font-size:12px;
+        padding:6px;
+    }
+
+    .card-actions button{
+        font-size:12px;
+        padding:8px 0;
+        border-radius:6px;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-content{
+        width:92%;
         padding:12px;
         border-radius:12px;
     }
 
-    .card img{
-        height:180px;
+    .modal-content img{
+        height:160px;
+        object-fit:cover;
     }
 
-    .card h3{
-        font-size:15px;
+    /* ===== CART ===== */
+    .cart-box{
+        width:92%;
+        border-radius:12px;
     }
 
-    .card p{
+    .cart-item{
+        font-size:12px;
+    }
+
+    .cart-total{
         font-size:13px;
     }
 
-    .variant-select{
+    .cart-btn{
+        padding:10px;
         font-size:13px;
-        padding:8px;
     }
 
-    .card-actions button{
-        font-size:13px;
-        padding:10px 0;
+    /* ===== CONTACT ===== */
+    .contact-container{
+        grid-template-columns:1fr;
+        gap:15px;
     }
 
-    /* Modal */
-    .modal-content{
-        width:95%;
+    .contact-card{
         padding:15px;
     }
 
-    .modal-content img{
-        height:180px;
+    .map-box iframe{
+        height:200px;
     }
 
-    /* Cart */
-    .cart-box{
-        width:95%;
-    }
-
-    /* Footer */
+    /* ===== FOOTER ===== */
     .footer-container{
         grid-template-columns:1fr;
         text-align:center;
-        gap:15px;
+        gap:12px;
+    }
+
+    .footer-box h4{
+        font-size:14px;
+    }
+
+    .footer-box p,
+    .footer-box a{
+        font-size:12px;
     }
 
     .footer-bottom{
         font-size:11px;
+        padding-top:8px;
     }
 
 }
