@@ -349,153 +349,147 @@ section{
     }
 }
 
-/* ===== MOBILE IDEAL PROFESSIONAL ===== */
+/* ===== MOBILE SAFE NORMALIZATION ===== */
 @media (max-width: 600px){
 
-    /* ===== NAVBAR ===== */
-    .navbar{
-        flex-direction:row;
-        padding:10px 14px;
-    }
+/* global safety */
+*{
+    box-sizing:border-box;
+}
 
-    .nav-title{
-        font-size:16px;
-    }
+body{
+    overflow-x:hidden;
+}
 
-    .nav-menu{
-        display:none; /* standar mobile */
-    }
+/* navbar */
+.navbar{
+    padding:10px 14px;
+}
 
-    .cart-icon{
-        font-size:18px;
-    }
+.nav-title{
+    font-size:16px;
+}
 
-    /* ===== HERO / SECTION ===== */
-    section{
-        padding:14px 12px;
-    }
+.cart-icon{
+    font-size:18px;
+}
 
-    h1{
-        font-size:20px;
-        line-height:1.3;
-    }
+/* section */
+section{
+    padding:14px 12px;
+}
 
-    h2{
-        font-size:18px;
-        text-align:center;
-        margin-bottom:10px;
-    }
+/* text scale */
+h1{
+    font-size:20px;
+    line-height:1.3;
+}
 
-    p{
-        font-size:13px;
-        line-height:1.5;
-    }
+h2{
+    font-size:18px;
+    margin-bottom:10px;
+}
 
-    /* ===== PRODUCTS GRID ===== */
-    .products{
-        display:grid;
-        grid-template-columns:repeat(2,1fr); /* 2 kolom standar mobile */
-        gap:12px;
-    }
+p{
+    font-size:13px;
+    line-height:1.5;
+}
 
-    /* ===== CARD ===== */
-    .card{
-        padding:10px;
-        border-radius:10px;
-    }
+/* products */
+.products{
+    gap:12px;
+}
 
-    .card img{
-        height:130px;
-        object-fit:cover;
-        border-radius:8px;
-    }
+/* card */
+.card{
+    padding:10px;
+    border-radius:10px;
+}
 
-    .card h3{
-        font-size:14px;
-        margin:6px 0 4px;
-    }
+.card img{
+    height:130px;
+    border-radius:8px;
+}
 
-    .card p{
-        font-size:12px;
-        margin:4px 0;
-    }
+.card h3{
+    font-size:14px;
+}
 
-    .variant-select{
-        font-size:12px;
-        padding:6px;
-    }
+.card p{
+    font-size:12px;
+}
 
-    .card-actions button{
-        font-size:12px;
-        padding:8px 0;
-        border-radius:6px;
-    }
+.variant-select{
+    font-size:12px;
+    padding:6px;
+}
 
-    /* ===== MODAL ===== */
-    .modal-content{
-        width:92%;
-        padding:12px;
-        border-radius:12px;
-    }
+.card-actions button{
+    font-size:12px;
+    padding:8px 0;
+    border-radius:6px;
+}
 
-    .modal-content img{
-        height:160px;
-        object-fit:cover;
-    }
+/* modal */
+.modal-content{
+    width:92%;
+    padding:12px;
+}
 
-    /* ===== CART ===== */
-    .cart-box{
-        width:92%;
-        border-radius:12px;
-    }
+.modal-content img{
+    height:160px;
+}
 
-    .cart-item{
-        font-size:12px;
-    }
+/* cart */
+.cart-box{
+    width:92%;
+}
 
-    .cart-total{
-        font-size:13px;
-    }
+.cart-item{
+    font-size:12px;
+}
 
-    .cart-btn{
-        padding:10px;
-        font-size:13px;
-    }
+.cart-total{
+    font-size:13px;
+}
 
-    /* ===== CONTACT ===== */
-    .contact-container{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
+.cart-btn{
+    padding:10px;
+    font-size:13px;
+}
 
-    .contact-card{
-        padding:15px;
-    }
+/* contact (TIDAK ubah layout, hanya normalisasi) */
+.contact-container{
+    gap:15px;
+}
 
-    .map-box iframe{
-        height:200px;
-    }
+.contact-card{
+    padding:15px;
+}
 
-    /* ===== FOOTER ===== */
-    .footer-container{
-        grid-template-columns:1fr;
-        text-align:center;
-        gap:12px;
-    }
+.map-box iframe{
+    height:200px;
+}
 
-    .footer-box h4{
-        font-size:14px;
-    }
+/* footer */
+.footer-container{
+    gap:12px;
+    padding:12px;
+}
 
-    .footer-box p,
-    .footer-box a{
-        font-size:12px;
-    }
+.footer-box h4{
+    font-size:14px;
+}
 
-    .footer-bottom{
-        font-size:11px;
-        padding-top:8px;
-    }
+.footer-box p,
+.footer-box a{
+    font-size:12px;
+}
+
+.footer-bottom{
+    font-size:11px;
+    padding-top:8px;
+}
 
 }
 
