@@ -424,47 +424,37 @@ p{
     font-size:13px;
 }
 
- .footer-contact{
-        padding:20px 14px;
-    }
-
-    .footer-container{
-        grid-template-columns:1fr;   /* tetap 1 kolom */
-        gap:16px;
-        text-align:left;             /* tetap rapi natural */
+  .footer-container{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* tetap 3 kolom */
+        gap:10px;
     }
 
     .footer-box{
-        padding:6px 0;
+        text-align:left;
     }
 
     .footer-box h4{
-        font-size:15px;
-        margin-bottom:6px;
-        letter-spacing:0.5px;
+        font-size:12px;
+        margin-bottom:4px;
     }
 
     .footer-box p,
     .footer-box a{
-        font-size:13px;
-        line-height:1.7;
-        opacity:0.95;
+        font-size:11px;
+        line-height:1.4;
     }
 
-    .footer-box a{
-        display:inline-block;
-        margin-top:4px;
+    .footer-contact{
+        padding:14px 10px;
     }
 
     .footer-bottom{
-        font-size:11px;
+        font-size:10px;
+        margin-top:10px;
         text-align:center;
-        margin-top:14px;
-        padding-top:10px;
-        line-height:1.5;
     }
 }
-
 
 
 
