@@ -448,6 +448,57 @@ p{
     gap:12px;
 }
 
+
+    .jumbotron{
+        padding:90px 16px;       /* tetap tinggi hero */
+        min-height:70vh;         /* rasa hero section */
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .jumbotron video{
+        min-width:100%;
+        min-height:100%;
+        object-fit:cover;
+    }
+
+    .jumbotron .overlay{
+        background:rgba(0,0,0,0.65); /* lebih clean & readable */
+    }
+
+    .jumbotron .content{
+        padding:0 10px;
+        max-width:100%;
+    }
+
+    .jumbotron h1{
+        font-size:24px;          /* tetap hero feeling */
+        line-height:1.3;
+        margin-bottom:12px;
+        font-weight:700;
+    }
+
+    .jumbotron p{
+        font-size:14px;
+        line-height:1.6;
+        margin-bottom:18px;
+        max-width:95%;
+        margin-left:auto;
+        margin-right:auto;
+        opacity:0.95;
+    }
+
+    .jumbotron button{
+        font-size:14px;
+        padding:10px 22px;
+        border-radius:8px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    }
+
+
+
 /* card */
 .card{
     padding:10px;
@@ -520,25 +571,36 @@ p{
 }
 
 /* footer */
-.footer-container{
-    gap:12px;
-    padding:12px;
-}
+ .footer-container{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* tetap 3 kolom */
+        gap:10px;
+    }
 
-.footer-box h4{
-    font-size:14px;
-}
+    .footer-box{
+        text-align:left;
+    }
 
-.footer-box p,
-.footer-box a{
-    font-size:12px;
-}
+    .footer-box h4{
+        font-size:12px;
+        margin-bottom:4px;
+    }
 
-.footer-bottom{
-    font-size:11px;
-    padding-top:8px;
-}
+    .footer-box p,
+    .footer-box a{
+        font-size:11px;
+        line-height:1.4;
+    }
 
+    .footer-contact{
+        padding:14px 10px;
+    }
+
+    .footer-bottom{
+        font-size:10px;
+        margin-top:10px;
+        text-align:center;
+    }
 }
 
 </style>

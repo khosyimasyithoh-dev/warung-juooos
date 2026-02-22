@@ -456,25 +456,36 @@ p{
 }
 
 /* footer */
-.footer-container{
-    gap:12px;
-    padding:12px;
-}
+ .footer-container{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* tetap 3 kolom */
+        gap:10px;
+    }
 
-.footer-box h4{
-    font-size:14px;
-}
+    .footer-box{
+        text-align:left;
+    }
 
-.footer-box p,
-.footer-box a{
-    font-size:12px;
-}
+    .footer-box h4{
+        font-size:12px;
+        margin-bottom:4px;
+    }
 
-.footer-bottom{
-    font-size:11px;
-    padding-top:8px;
-}
+    .footer-box p,
+    .footer-box a{
+        font-size:11px;
+        line-height:1.4;
+    }
 
+    .footer-contact{
+        padding:14px 10px;
+    }
+
+    .footer-bottom{
+        font-size:10px;
+        margin-top:10px;
+        text-align:center;
+    }
 }
 </style>
 </head>
